@@ -1,0 +1,9 @@
+<controls:BaseApplication x:Class="OhYeah.App"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:controls="using:ScottIsAFool.Windows.Controls">
+    <Application.Resources>
+        <vm:ViewModelLocator x:Key="Locator"
+                             xmlns:vm="using:OhYeah.ViewModel" />
+    </Application.Resources>
+</controls:BaseApplication>
