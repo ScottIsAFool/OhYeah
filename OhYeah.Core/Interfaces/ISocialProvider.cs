@@ -11,6 +11,11 @@ namespace OhYeah.Core.Interfaces
         string Name { get; }
         string AppId { get; }
         Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken));
-        Task<User> GetUser(CancellationToken cancellationToken = default(CancellationToken));
+        Task GetUser(CancellationToken cancellationToken = default(CancellationToken));
+        void SaveAuthDetails();
+        void LoadAuthDetails();
+        void ClearAuthDetails();
+        bool IsSignedIn { get; }
+        User User { get; }
     }
 }

@@ -11,7 +11,7 @@ using ScottIsAFool.Windows.Core.Extensions;
 
 namespace OhYeah.Core.Social.Instagram
 {
-    public class InstagramProvider : ISocialProvider
+    public class InstagramProvider : BaseSocialProvider, ISocialProvider
     {
         public string Name { get { return "Instagram"; } }
         public string AppId { get { return Constants.Api.Instagram.AppId; } }
@@ -48,9 +48,31 @@ namespace OhYeah.Core.Social.Instagram
             }
         }
 
-        public Task<Social.User> GetUser(CancellationToken cancellationToken = new CancellationToken())
+        public Task GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
+        }
+
+        public void SaveAuthDetails()
+        {
+        }
+
+        public void LoadAuthDetails()
+        {
+        }
+
+        public void ClearAuthDetails()
+        {
+            
+        }
+
+        public bool IsSignedIn { get; private set; }
+
+        public Social.User User { get; private set; }
+
+        public void SetUser(Social.User user)
+        {
+            User = user;
         }
     }
 }

@@ -11,7 +11,7 @@ using ScottIsAFool.Windows.Core.Extensions;
 
 namespace OhYeah.Core.Social.Facebook
 {
-    public class FacebookProvider : ISocialProvider
+    public class FacebookProvider : BaseSocialProvider, ISocialProvider
     {
         private const string DateFormat = "yyyy-mm-dd";
         public string Name { get { return "Facebook"; } }
@@ -54,9 +54,22 @@ namespace OhYeah.Core.Social.Facebook
             }
         }
 
-        public Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
+        public Task GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
             return Task.FromResult<User>(null);
+        }
+
+        public void SaveAuthDetails()
+        {
+        }
+
+        public void LoadAuthDetails()
+        {
+        }
+
+        public void ClearAuthDetails()
+        {
+            
         }
     }
 }
