@@ -74,6 +74,8 @@
     <Compile Include="Social\Facebook\Author.cs" />
     <Compile Include="Social\Facebook\PostData.cs" />
     <Compile Include="Social\Facebook\PostResponse.cs" />
+    <Compile Include="Social\Instagram\InstagramProvider.cs" />
+    <Compile Include="Social\Instagram\PostResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
