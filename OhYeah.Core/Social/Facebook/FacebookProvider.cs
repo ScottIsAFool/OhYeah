@@ -22,27 +22,41 @@ namespace OhYeah.Core.Social.Facebook
             throw new NotImplementedException();
         }
 
-        public async Task<List<OhYeahPost>> GetPosts(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken))
         {
+            var today = DateTime.Now.Date;
+            var tasks = today.GetPreviousYears().Select(x => GetPosts(cancellationToken, x));
+            var groups = await Task.WhenAll(tasks);
+            return groups != null ? groups.ToList() : new List<DateGroup<OhYeahPost>>();
+        }
+
+        private static async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)
+        {
+            var tomorrow = today.AddDays(1);
             using (var client = HttpClientHelper.Client())
             {
-                var today = DateTime.Now.Date;
-                var tomorrow = today.AddDays(1);
-
                 var url = string.Format(Constants.Api.Facebook.ApiCall, today.ToString(DateFormat), tomorrow.ToString(DateFormat));
                 var response = await client.GetAsync(url, cancellationToken);
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return new List<OhYeahPost>();
+                    return new DateGroup<OhYeahPost>();
                 }
 
                 var postResponse = await response.DeserialiseResponse<PostResponse>();
 
-                return postResponse != null && postResponse.Data.IsNullOrEmpty()
-                    ? postResponse.Data.Select(x => x.ToPost()).ToList() 
-                    : new List<OhYeahPost>();
+                if (postResponse != null && postResponse.Data.IsNullOrEmpty())
+                {
+                    return postResponse.Data.Select(x => x.ToPost()).Group(today);
+                }
+
+                return new DateGroup<OhYeahPost>();
             }
+        }
+
+        public Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
+        {
+            return Task.FromResult<User>(null);
         }
     }
 }
