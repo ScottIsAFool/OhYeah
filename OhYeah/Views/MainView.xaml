@@ -6,9 +6,11 @@
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:controls="using:ScottIsAFool.Windows.Controls"
                    mc:Ignorable="d"
-                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                   Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                   DataContext="{Binding Facebook, Source={StaticResource Locator}}">
 
     <Grid>
-
+        <Button Content="Launch Facebook"
+                Command="{Binding AuthenticateCommand}"/>
     </Grid>
 </controls:BasePage>

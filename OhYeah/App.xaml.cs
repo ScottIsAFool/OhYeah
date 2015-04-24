@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using OhYeah.Views;
+using ScottIsAFool.Windows.Core.Extensions;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -96,6 +97,18 @@ namespace OhYeah
         protected override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
+
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                var eventArgs = args as ProtocolActivatedEventArgs;
+                if (eventArgs != null)
+                {
+                    var uri = eventArgs.Uri;
+                    var query = uri.QueryDictionary();
+
+                    var accessToken = query["access_token"];
+                }
+            }
         }
 
         /// <summary>

@@ -21,14 +21,17 @@ namespace OhYeah.ViewModel
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<FacebookViewModel>();
         }
 
         public MainViewModel Main
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
+        }
+
+        public FacebookViewModel Facebook
+        {
+            get { return ServiceLocator.Current.GetInstance<FacebookViewModel>(); }
         }
 
         public static INavigationService NavigationService

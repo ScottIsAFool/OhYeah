@@ -1,5 +1,3 @@
-using GalaSoft.MvvmLight;
-
 namespace OhYeah.ViewModel
 {
     /// <summary>

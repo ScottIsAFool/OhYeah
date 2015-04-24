@@ -11,10 +11,10 @@ namespace OhYeah.Core.Extensions
             return new OhYeahPost();
         }
 
-        public static OhYeahPost ToPost(this Social.Instagram.PostData data)
-        {
-            return new OhYeahPost();
-        }
+        //public static OhYeahPost ToPost(this Social.Instagram.PostData data)
+        //{
+        //    return new OhYeahPost();
+        //}
 
         public static DateGroup<OhYeahPost> Group(this IEnumerable<OhYeahPost> items, DateTime today)
         {
