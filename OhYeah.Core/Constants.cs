@@ -11,7 +11,7 @@
 #else
                 public const string AppId = "764173857036299";
 #endif
-                public const string ApiCall = "https://graph.facebook.com/v2.3/me/feed?since={0}&until={1}";
+                public const string ApiCall = "https://graph.facebook.com/v2.4/me/feed?access_token={0}&since={1}&until={2}&fields=icon,message,full_picture,type,status_type";
             }
 
             public static class Instagram

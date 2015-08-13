@@ -10,7 +10,11 @@
                    DataContext="{Binding Facebook, Source={StaticResource Locator}}">
 
     <Grid>
-        <Button Content="Launch Facebook"
-                Command="{Binding AuthenticateCommand}"/>
+        <StackPanel>
+            <Button Content="Launch Facebook"
+                    Command="{Binding AuthenticateCommand}" />
+            <Button Command="{Binding LoadPostsCommand}"
+                    Content="Load posts"/>
+        </StackPanel>
     </Grid>
 </controls:BasePage>

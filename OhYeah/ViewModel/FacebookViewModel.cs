@@ -1,6 +1,8 @@
 ﻿using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using OhYeah.Core;
+using OhYeah.Core.Social.Facebook;
+using ScottIsAFool.Windows.Core.Extensions;
 
 namespace OhYeah.ViewModel
 {
@@ -9,10 +11,12 @@ namespace OhYeah.ViewModel
         private const string FbConnectUri = "fbconnect://authorize?client_id={0}&scope={1}&redirect_uri=msft-{2}://authorize";
 
         private readonly INavigationService _navigationService;
+        private readonly FacebookProvider _facebookProvider;
 
         public FacebookViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+            _facebookProvider = new FacebookProvider();
         }
 
         public RelayCommand AuthenticateCommand
@@ -24,6 +28,21 @@ namespace OhYeah.ViewModel
                     var uri = GetConnectUri();
 
                     new LauncherService().LaunchUriAsync(uri);
+                });
+            }
+        }
+
+        public RelayCommand LoadPostsCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    var posts = await _facebookProvider.GetPosts();
+                    if (!posts.IsNullOrEmpty())
+                    {
+                        var i = 1;
+                    }
                 });
             }
         }

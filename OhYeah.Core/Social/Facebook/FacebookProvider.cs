@@ -13,9 +13,9 @@ namespace OhYeah.Core.Social.Facebook
 {
     public class FacebookProvider : BaseSocialProvider, ISocialProvider
     {
-        private const string DateFormat = "yyyy-mm-dd";
-        public string Name { get { return "Facebook"; } }
-        public string AppId { get { return Constants.Api.Facebook.AppId; } }
+        private const string DateFormat = "yyyy-MM-dd";
+        public override string Name => "Facebook";
+        public override string AppId => Constants.Api.Facebook.AppId;
 
         public Task Authenticate()
         {
@@ -24,18 +24,23 @@ namespace OhYeah.Core.Social.Facebook
 
         public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (!IsSignedIn)
+            {
+                return new List<DateGroup<OhYeahPost>>();
+            }
+
             var today = DateTime.Now.Date;
             var tasks = today.GetPreviousYears().Select(x => GetPosts(cancellationToken, x));
             var groups = await Task.WhenAll(tasks);
             return groups != null ? groups.ToList() : new List<DateGroup<OhYeahPost>>();
         }
 
-        private static async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)
+        private async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)
         {
             var tomorrow = today.AddDays(1);
             using (var client = HttpClientHelper.Client())
             {
-                var url = string.Format(Constants.Api.Facebook.ApiCall, today.ToString(DateFormat), tomorrow.ToString(DateFormat));
+                var url = string.Format(Constants.Api.Facebook.ApiCall, AuthenticationDetails?.AccessToken, today.ToString(DateFormat), tomorrow.ToString(DateFormat));
                 var response = await client.GetAsync(url, cancellationToken);
 
                 if (!response.IsSuccessStatusCode)
@@ -57,19 +62,6 @@ namespace OhYeah.Core.Social.Facebook
         public Task GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
             return Task.FromResult<User>(null);
-        }
-
-        public void SaveAuthDetails()
-        {
-        }
-
-        public void LoadAuthDetails()
-        {
-        }
-
-        public void ClearAuthDetails()
-        {
-            
         }
     }
 }
