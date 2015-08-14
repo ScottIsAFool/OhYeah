@@ -8,7 +8,13 @@ namespace OhYeah.Core.Extensions
     {
         public static OhYeahPost ToPost(this Social.Facebook.PostData data)
         {
-            return new OhYeahPost();
+            return new OhYeahPost
+            {
+                CreatedDate = data.CreatedTime,
+                Message = data.Message,
+                PostType = data.Type,
+                ImageUrl = data.ImageUrl
+            };
         }
 
         //public static OhYeahPost ToPost(this Social.Instagram.PostData data)

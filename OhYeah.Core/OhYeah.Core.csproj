@@ -76,6 +76,7 @@
     <Compile Include="Social\Facebook\FacebookUser.cs" />
     <Compile Include="Social\Facebook\PostData.cs" />
     <Compile Include="Social\Facebook\PostResponse.cs" />
+    <Compile Include="Social\Facebook\PostType.cs" />
     <Compile Include="Social\User.cs" />
   </ItemGroup>
   <ItemGroup>

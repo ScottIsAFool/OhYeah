@@ -15,7 +15,7 @@ namespace OhYeah.Core.Social.Facebook
         public string Message { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public PostType Type { get; set; }
 
         [JsonProperty("created_time")]
         public DateTime CreatedTime { get; set; }
@@ -28,5 +28,8 @@ namespace OhYeah.Core.Social.Facebook
 
         [JsonProperty("subscribed")]
         public bool Subscribed { get; set; }
+
+        [JsonProperty("full_picture")]
+        public string ImageUrl { get; set; }
     }
 }
