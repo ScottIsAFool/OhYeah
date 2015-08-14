@@ -27,21 +27,12 @@ namespace OhYeah.ViewModel
             SimpleIoc.Default.Register<FacebookViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get { return ServiceLocator.Current.GetInstance<MainViewModel>(); }
-        }
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public FacebookViewModel Facebook
-        {
-            get { return ServiceLocator.Current.GetInstance<FacebookViewModel>(); }
-        }
+        public FacebookViewModel Facebook => ServiceLocator.Current.GetInstance<FacebookViewModel>();
 
-        public static INavigationService NavigationService
-        {
-            get { return ServiceLocator.Current.GetInstance<INavigationService>(); }
-        }
-        
+        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

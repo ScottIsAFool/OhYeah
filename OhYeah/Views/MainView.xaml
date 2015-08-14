@@ -8,13 +8,45 @@
                    mc:Ignorable="d"
                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <Page.Resources>
+        <CollectionViewSource x:Key="PostSource"
+                              IsSourceGrouped="True"
+                              Source="{Binding Posts}"></CollectionViewSource>
+    </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <StackPanel>
             <Button Content="Launch Facebook"
                     Command="{Binding AuthenticateCommand}" />
             <Button Command="{Binding PageLoadedCommand}"
                     Content="Load posts"/>
         </StackPanel>
+        
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Source={StaticResource PostSource}}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Message}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupStyle>
+                <GroupStyle HidesIfEmpty="True">
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Background="SkyBlue">
+                                <TextBlock Text="{Binding Date, Converter={StaticResource YearsAgoConverter}}"
+                                           Style="{StaticResource HeaderTextBlockStyle}"
+                                           Foreground="White"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
     </Grid>
 </controls:BasePage>

@@ -2,11 +2,12 @@
                           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:controls="using:ScottIsAFool.Windows.Controls"
+                          xmlns:converters="using:OhYeah.Converters"
                           RequestedTheme="Light">
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator"
                              xmlns:vm="using:OhYeah.ViewModel" />
         
-        
+        <converters:YearsAgoConverter x:Key="YearsAgoConverter"/>
     </Application.Resources>
 </controls:BaseApplication>

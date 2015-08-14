@@ -84,6 +84,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\YearsAgoConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="ViewModel\FacebookViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

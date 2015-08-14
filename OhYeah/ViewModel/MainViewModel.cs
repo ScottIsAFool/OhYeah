@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Command;
 using OhYeah.Core.Interfaces;
+using OhYeah.Core.Model;
 
 namespace OhYeah.ViewModel
 {
@@ -30,6 +32,8 @@ namespace OhYeah.ViewModel
             _socialProviderManager = socialProviderManager;
         }
 
+        public List<DateGroup<OhYeahPost>> Posts { get; set; }
+
         public RelayCommand PageLoadedCommand
         {
             get
@@ -39,7 +43,7 @@ namespace OhYeah.ViewModel
                     var posts = await _socialProviderManager.GetPosts();
                     if (posts != null)
                     {
-                        
+                        Posts = posts;
                     }
                 });
             }
