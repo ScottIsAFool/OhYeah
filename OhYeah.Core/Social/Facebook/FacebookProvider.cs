@@ -51,7 +51,7 @@ namespace OhYeah.Core.Social.Facebook
                 PostResponse dateItem = JsonConvert.DeserializeObject<PostResponse>(item);
                 if (!dateItem.Data.IsNullOrEmpty())
                 {
-                    var grouped = dateItem.Data.Select(x => x.ToPost()).Group(dateItem.Data[0].CreatedTime);
+                    var grouped = dateItem.Data.Select(x => x.ToPost()).GroupByDate(dateItem.Data[0].CreatedTime.Date);
                     groupList.Add(grouped);
                 }
             }

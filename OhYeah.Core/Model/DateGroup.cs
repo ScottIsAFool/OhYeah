@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace OhYeah.Core.Model
 {
+    [DebuggerDisplay("Date: {Date}")]
     public class DateGroup<T> : List<T>
     {
         public DateGroup():base(){}

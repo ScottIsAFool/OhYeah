@@ -7,7 +7,7 @@ namespace OhYeah.Core.Extensions
     {
         public static List<DateTime> GetPreviousYears(this DateTime today)
         {
-            var years = today.Year - 2004;
+            var years = today.AddYears(-1).Year - 2004;
             var yearLists = new List<DateTime>();
 
             for (var i = 0; i < years; i++)

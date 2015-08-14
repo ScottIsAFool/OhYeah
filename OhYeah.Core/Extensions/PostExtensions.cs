@@ -16,7 +16,7 @@ namespace OhYeah.Core.Extensions
         //    return new OhYeahPost();
         //}
 
-        public static DateGroup<OhYeahPost> Group(this IEnumerable<OhYeahPost> items, DateTime today)
+        public static DateGroup<OhYeahPost> GroupByDate(this IEnumerable<OhYeahPost> items, DateTime today)
         {
             var postGroup = new DateGroup<OhYeahPost>(items) { Date = today };
             return postGroup;
