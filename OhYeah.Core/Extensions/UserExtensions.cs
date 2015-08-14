@@ -1,6 +1,6 @@
-using OhYeah.Core.Social.Facebook;
+using Facebook.Client;
+using OhYeah.Core.Social;
 //using OhYeah.Core.Social.Instagram;
-using User = OhYeah.Core.Social.User;
 
 namespace OhYeah.Core.Extensions
 {
@@ -16,7 +16,7 @@ namespace OhYeah.Core.Extensions
         //    };
         //}
 
-        public static User ToUser(this FacebookUser item)
+        public static User ToUser(this GraphUser item)
         {
             return new User
             {

@@ -21,6 +21,5 @@ namespace OhYeah.Core.Extensions
             var postGroup = new DateGroup<OhYeahPost>(items) { Date = today };
             return postGroup;
         }
-    
     }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Facebook;
+using Facebook.Client;
+using Newtonsoft.Json;
 using OhYeah.Core.Extensions;
-using OhYeah.Core.Helpers;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
 using ScottIsAFool.Windows.Core.Extensions;
@@ -14,12 +16,14 @@ namespace OhYeah.Core.Social.Facebook
     public class FacebookProvider : BaseSocialProvider, ISocialProvider
     {
         private const string DateFormat = "yyyy-MM-dd";
+        private FacebookClient _facebookClient;
         public override string Name => "Facebook";
         public override string AppId => Constants.Api.Facebook.AppId;
 
-        public Task Authenticate()
+        protected override Task PostAuthenticationLoaded()
         {
-            throw new NotImplementedException();
+            _facebookClient = new FacebookClient(AuthenticationDetails.AccessToken);
+            return base.PostAuthenticationLoaded();
         }
 
         public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken))
@@ -30,38 +34,36 @@ namespace OhYeah.Core.Social.Facebook
             }
 
             var today = DateTime.Now.Date;
-            var tasks = today.GetPreviousYears().Select(x => GetPosts(cancellationToken, x));
-            var groups = await Task.WhenAll(tasks);
-            return groups != null ? groups.ToList() : new List<DateGroup<OhYeahPost>>();
-        }
+            var days = today.GetPreviousYears()
+                            .Select(day => string.Format(
+                                Constants.Api.Facebook.ApiPath, 
+                                AuthenticationDetails?.AccessToken, 
+                                day.ToString(DateFormat), 
+                                day.AddDays(1).ToString(DateFormat)))
+                            .Select(path => new FacebookBatchParameter(path))
+                            .ToArray();
+            dynamic results = await _facebookClient.BatchTaskAsync(days);
 
-        private async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)
-        {
-            var tomorrow = today.AddDays(1);
-            using (var client = HttpClientHelper.Client())
+            var groupList = new List<DateGroup<OhYeahPost>>();
+            foreach (var result in results)
             {
-                var url = string.Format(Constants.Api.Facebook.ApiCall, AuthenticationDetails?.AccessToken, today.ToString(DateFormat), tomorrow.ToString(DateFormat));
-                var response = await client.GetAsync(url, cancellationToken);
-
-                if (!response.IsSuccessStatusCode)
+                var item = result.ToString();
+                PostResponse dateItem = JsonConvert.DeserializeObject<PostResponse>(item);
+                if (!dateItem.Data.IsNullOrEmpty())
                 {
-                    return new DateGroup<OhYeahPost>();
+                    var grouped = dateItem.Data.Select(x => x.ToPost()).Group(dateItem.Data[0].CreatedTime);
+                    groupList.Add(grouped);
                 }
-
-                var postResponse = await response.DeserialiseResponse<PostResponse>();
-
-                if (postResponse != null && postResponse.Data.IsNullOrEmpty())
-                {
-                    return postResponse.Data.Select(x => x.ToPost()).Group(today);
-                }
-
-                return new DateGroup<OhYeahPost>();
             }
+
+            return groupList;
         }
 
-        public Task GetUser(CancellationToken cancellationToken = new CancellationToken())
+        public async Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
-            return Task.FromResult<User>(null);
+            dynamic result = await _facebookClient.GetTaskAsync("me");
+            var fbUser = new GraphUser(result);
+            return fbUser.ToUser();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace OhYeah.Core.Social.Facebook
@@ -17,10 +18,10 @@ namespace OhYeah.Core.Social.Facebook
         public string Type { get; set; }
 
         [JsonProperty("created_time")]
-        public string CreatedTime { get; set; }
+        public DateTime CreatedTime { get; set; }
 
         [JsonProperty("updated_time")]
-        public string UpdatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
 
         [JsonProperty("is_hidden")]
         public bool IsHidden { get; set; }

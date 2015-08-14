@@ -1,4 +1,5 @@
-﻿using Cimbalino.Toolkit.Services;
+﻿using System.Threading.Tasks;
+using Cimbalino.Toolkit.Services;
 using Newtonsoft.Json;
 
 namespace OhYeah.Core.Social
@@ -54,6 +55,11 @@ namespace OhYeah.Core.Social
 #else
             AuthenticationDetails = Load<AuthenticationDetails>(AuthKey);
 #endif
+
+            if (AuthenticationDetails != null)
+            {
+                PostAuthenticationLoaded();
+            }
         }
 
         public void ClearAuthDetails()
@@ -61,6 +67,11 @@ namespace OhYeah.Core.Social
             Clear(AuthKey);
         }
 #endregion
+
+        protected virtual Task PostAuthenticationLoaded()
+        {
+            return Task.FromResult(0);
+        }
 
 #region Common save/load/clear methods
         private void Clear(string key)
