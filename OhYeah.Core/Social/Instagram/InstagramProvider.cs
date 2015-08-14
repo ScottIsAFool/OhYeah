@@ -13,8 +13,8 @@ namespace OhYeah.Core.Social.Instagram
 {
     public class InstagramProvider : BaseSocialProvider, ISocialProvider
     {
-        public string Name { get { return "Instagram"; } }
-        public string AppId { get { return Constants.Api.Instagram.AppId; } }
+        public override string Name => "Instagram";
+        public override string AppId => Constants.Api.Instagram.AppId;
 
         public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -24,8 +24,18 @@ namespace OhYeah.Core.Social.Instagram
             return groups != null ? groups.ToList() : new List<DateGroup<OhYeahPost>>();
         }
 
-        private static async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)
+        public Task<Social.User> GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
+            return Task.FromResult<Social.User>(null);
+        }
+
+        private async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)
+        {
+            if (!IsSignedIn)
+            {
+                return new DateGroup<OhYeahPost>();
+            }
+
             var tomorrow = today.AddDays(1);
             using (var client = HttpClientHelper.Client())
             {
@@ -41,38 +51,11 @@ namespace OhYeah.Core.Social.Instagram
 
                 if (postResponse != null && postResponse.Data.IsNullOrEmpty())
                 {
-                    return postResponse.Data.Select(x => x.ToPost()).Group(today);
+                    return postResponse.Data.Select(x => x.ToPost()).GroupByDate(today);
                 }
 
                 return new DateGroup<OhYeahPost>();
             }
-        }
-
-        public Task GetUser(CancellationToken cancellationToken = new CancellationToken())
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveAuthDetails()
-        {
-        }
-
-        public void LoadAuthDetails()
-        {
-        }
-
-        public void ClearAuthDetails()
-        {
-            
-        }
-
-        public bool IsSignedIn { get; private set; }
-
-        public Social.User User { get; private set; }
-
-        public void SetUser(Social.User user)
-        {
-            User = user;
         }
     }
 }

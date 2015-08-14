@@ -13,14 +13,15 @@ namespace OhYeah.Core.Extensions
                 CreatedDate = data.CreatedTime,
                 Message = data.Message,
                 PostType = data.Type,
-                ImageUrl = data.ImageUrl
+                ImageUrl = data.ImageUrl,
+                Provider = Provider.Facebook
             };
         }
 
-        //public static OhYeahPost ToPost(this Social.Instagram.PostData data)
-        //{
-        //    return new OhYeahPost();
-        //}
+        public static OhYeahPost ToPost(this Social.Instagram.PostData data)
+        {
+            return new OhYeahPost();
+        }
 
         public static DateGroup<OhYeahPost> GroupByDate(this IEnumerable<OhYeahPost> items, DateTime today)
         {

@@ -10,5 +10,6 @@ namespace OhYeah.Core.Model
         public string ImageUrl { get; set; }
         public DateTime? CreatedDate { get; set; }
         public PostType PostType { get; set; }
+        public Provider Provider { get; set; }
     }
 }

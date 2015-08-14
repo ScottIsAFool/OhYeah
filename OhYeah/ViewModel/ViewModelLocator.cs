@@ -1,6 +1,8 @@
 using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using OhYeah.Core.Interfaces;
+using OhYeah.Core.Services;
 using OhYeah.Extensions;
 
 namespace OhYeah.ViewModel
@@ -19,6 +21,7 @@ namespace OhYeah.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
+            SimpleIoc.Default.RegisterIf<ISocialProviderManager, SocialProviderManager>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<FacebookViewModel>();

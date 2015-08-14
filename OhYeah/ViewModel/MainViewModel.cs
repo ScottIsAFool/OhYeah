@@ -1,3 +1,7 @@
+using Cimbalino.Toolkit.Services;
+using GalaSoft.MvvmLight.Command;
+using OhYeah.Core.Interfaces;
+
 namespace OhYeah.ViewModel
 {
     /// <summary>
@@ -14,19 +18,31 @@ namespace OhYeah.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
+        private readonly ISocialProviderManager _socialProviderManager;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(INavigationService navigationService, ISocialProviderManager socialProviderManager)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            _navigationService = navigationService;
+            _socialProviderManager = socialProviderManager;
+        }
+
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    var posts = await _socialProviderManager.GetPosts();
+                    if (posts != null)
+                    {
+                        
+                    }
+                });
+            }
         }
     }
 }
