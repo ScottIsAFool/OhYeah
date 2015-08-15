@@ -20,5 +20,10 @@ namespace OhYeah.Services
         {
             return Navigate<ShareView>(parameter);
         }
+
+        public bool NavigateToAboutView()
+        {
+            return Navigate<AboutView>();
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace OhYeah.ViewModels.Entities
             {
                 return new RelayCommand(() =>
                 {
-                    
+                    _navigationService.NavigateToShareView(Post);
                 });
             }
         }

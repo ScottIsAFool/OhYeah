@@ -73,5 +73,10 @@ namespace OhYeah.Empty
         {
             throw new NotImplementedException();
         }
+
+        public bool NavigateToAboutView()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace OhYeah.Core.Interfaces
         bool NavigateToAccountsView();
         bool NavigateToSettingsView();
         bool NavigateToShareView(object parameter = null);
+        bool NavigateToAboutView();
     }
 }
