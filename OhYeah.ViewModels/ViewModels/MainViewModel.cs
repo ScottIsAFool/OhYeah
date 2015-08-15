@@ -60,5 +60,21 @@ namespace OhYeah.ViewModels
                 });
             }
         }
+
+        public RelayCommand NavigateToAccountsViewCommand
+        {
+            get
+            {
+                return new RelayCommand(() => _navigationService.NavigateToAccountsView());
+            }
+        }
+
+        public RelayCommand NavigateToSettingsViewCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>_navigationService.NavigateToSettingsView());
+            }
+        }
     }
 }

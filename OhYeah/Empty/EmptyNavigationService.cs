@@ -59,5 +59,19 @@ namespace OhYeah.Empty
         public bool CanGoForward { get; }
         public event EventHandler Navigated;
         public event EventHandler<NavigationServiceBackKeyPressedEventArgs> BackKeyPressed;
+        public bool NavigateToAccountsView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToSettingsView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool NavigateToShareView(object parameter = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
