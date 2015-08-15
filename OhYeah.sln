@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhYeah", "OhYeah\OhYeah.csproj", "{E1E01062-01F8-43AA-8905-7D5FEEB51986}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhYeah.Background", "OhYeah.Background\OhYeah.Background.csproj", "{9E6002E0-2615-4130-A5C7-70C616E8F0A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhYeah.Core", "OhYeah.Core\OhYeah.Core.csproj", "{DC23F08F-E52E-4D76-A6CB-D1137BF142C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhYeah.ViewModels", "OhYeah.ViewModels\OhYeah.ViewModels.csproj", "{F6AC23E5-47B3-410E-9B4C-798C0923E75B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,30 @@ Global
 		{DC23F08F-E52E-4D76-A6CB-D1137BF142C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC23F08F-E52E-4D76-A6CB-D1137BF142C6}.Release|ARM.ActiveCfg = Release|Any CPU
 		{DC23F08F-E52E-4D76-A6CB-D1137BF142C6}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug Beta|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug Beta|Any CPU.Build.0 = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug Beta|ARM.ActiveCfg = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug Beta|ARM.Build.0 = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug Beta|x86.ActiveCfg = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug Beta|x86.Build.0 = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug|ARM.Build.0 = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release Beta|Any CPU.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release Beta|Any CPU.Build.0 = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release Beta|ARM.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release Beta|ARM.Build.0 = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release Beta|x86.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release Beta|x86.Build.0 = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release|ARM.Build.0 = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6AC23E5-47B3-410E-9B4C-798C0923E75B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

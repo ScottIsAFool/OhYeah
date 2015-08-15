@@ -9,5 +9,6 @@
                              xmlns:vm="using:OhYeah.ViewModel" />
         
         <converters:YearsAgoConverter x:Key="YearsAgoConverter"/>
+        <converters:PostTypeVisibilityConverter x:Key="PostTypeVisibilityConverter"/>
     </Application.Resources>
 </controls:BaseApplication>

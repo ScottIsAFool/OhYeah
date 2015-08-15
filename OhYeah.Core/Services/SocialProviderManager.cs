@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cimbalino.Toolkit.Services;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
 using OhYeah.Core.Social.Facebook;
@@ -12,9 +13,14 @@ namespace OhYeah.Core.Services
 {
     public class SocialProviderManager : ISocialProviderManager
     {
-        public SocialProviderManager() { }
-        public ISocialProvider Facebook { get; } = new FacebookProvider();
-        public ISocialProvider Instagram { get; } = new InstagramProvider();
+        public SocialProviderManager(IApplicationSettingsService applicationSettingsService)
+        {
+            Facebook = new FacebookProvider(applicationSettingsService);
+            Instagram = new InstagramProvider(applicationSettingsService);
+        }
+
+        public ISocialProvider Facebook { get; }
+        public ISocialProvider Instagram { get; }
 
         public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
         {

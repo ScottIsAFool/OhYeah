@@ -3,7 +3,10 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Services;
+using OhYeah.Empty;
 using OhYeah.Extensions;
+using OhYeah.Services;
+using OhYeah.ViewModels;
 
 namespace OhYeah.ViewModel
 {
@@ -20,8 +23,18 @@ namespace OhYeah.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.RegisterIf<INavigationService, NavigationService>();
-            SimpleIoc.Default.RegisterIf<ISocialProviderManager, SocialProviderManager>();
+            if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
+            {
+                SimpleIoc.Default.RegisterIf<IApplicationSettingsService, EmptyApplicationSettingsService>();
+                SimpleIoc.Default.RegisterIf<INavigation, EmptyNavigationService>();
+                SimpleIoc.Default.RegisterIf<ISocialProviderManager, EmptySocialProviderManager>();
+            }
+            else
+            {
+                SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
+                SimpleIoc.Default.RegisterIf<INavigation, Navigation>();
+                SimpleIoc.Default.RegisterIf<ISocialProviderManager, SocialProviderManager>();
+            }
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<FacebookViewModel>();
@@ -31,7 +44,7 @@ namespace OhYeah.ViewModel
 
         public FacebookViewModel Facebook => ServiceLocator.Current.GetInstance<FacebookViewModel>();
 
-        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
+        public static INavigation NavigationService => ServiceLocator.Current.GetInstance<INavigation>();
 
         public static void Cleanup()
         {

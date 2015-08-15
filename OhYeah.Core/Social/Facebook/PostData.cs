@@ -31,5 +31,8 @@ namespace OhYeah.Core.Social.Facebook
 
         [JsonProperty("full_picture")]
         public string ImageUrl { get; set; }
+
+        [JsonProperty("status_type")]
+        public string StatusType { get; set; }
     }
 }

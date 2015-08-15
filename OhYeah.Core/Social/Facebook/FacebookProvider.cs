@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cimbalino.Toolkit.Services;
 using Facebook;
 using Facebook.Client;
 using Newtonsoft.Json;
@@ -19,6 +20,8 @@ namespace OhYeah.Core.Social.Facebook
         private FacebookClient _facebookClient;
         public override string Name => "Facebook";
         public override string AppId => Constants.Api.Facebook.AppId;
+
+        public FacebookProvider(IApplicationSettingsService applicationSettingsService) : base(applicationSettingsService) { }
 
         protected override Task PostAuthenticationLoaded()
         {
@@ -51,7 +54,9 @@ namespace OhYeah.Core.Social.Facebook
                 PostResponse dateItem = JsonConvert.DeserializeObject<PostResponse>(item);
                 if (!dateItem.Data.IsNullOrEmpty())
                 {
-                    var grouped = dateItem.Data.Select(x => x.ToPost()).GroupByDate(dateItem.Data[0].CreatedTime.Date);
+                    var grouped = dateItem.Data.Where(x => string.IsNullOrEmpty(x.StatusType) || (!string.IsNullOrEmpty(x.StatusType) && !x.StatusType.Equals("created_note")))
+                                               .Select(x => x.ToPost())
+                                               .GroupByDate(dateItem.Data[0].CreatedTime.Date);
                     groupList.Add(grouped);
                 }
             }

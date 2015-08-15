@@ -84,15 +84,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviours\StatusBarBehavior.cs" />
+    <Compile Include="Converters\PostTypeVisibilityConverter.cs" />
     <Compile Include="Converters\YearsAgoConverter.cs" />
+    <Compile Include="Empty\EmptyApplicationSettingsService.cs" />
+    <Compile Include="Empty\EmptyNavigationService.cs" />
+    <Compile Include="Empty\EmptySocialProviderManager.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
-    <Compile Include="ViewModel\FacebookViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Services\Navigation.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,11 +123,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Cimbalino.Toolkit">
-      <HintPath>..\packages\Cimbalino.Toolkit.1.2.6\lib\wpa81\Cimbalino.Toolkit.dll</HintPath>
+    <Reference Include="Cimbalino.Toolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cimbalino.Toolkit.2.0.0-beta3\lib\wpa81\Cimbalino.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Cimbalino.Toolkit.Core">
-      <HintPath>..\packages\Cimbalino.Toolkit.Core.1.2.6\lib\wpa81\Cimbalino.Toolkit.Core.dll</HintPath>
+    <Reference Include="Cimbalino.Toolkit.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cimbalino.Toolkit.Core.2.0.0-beta3\lib\wpa81\Cimbalino.Toolkit.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\packages\MvvmLightLibs.5.1.1.0\lib\wpa81\GalaSoft.MvvmLight.dll</HintPath>
@@ -170,6 +175,10 @@
     <ProjectReference Include="..\OhYeah.Core\OhYeah.Core.csproj">
       <Project>{dc23f08f-e52e-4d76-a6cb-d1137bf142c6}</Project>
       <Name>OhYeah.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OhYeah.ViewModels\OhYeah.ViewModels.csproj">
+      <Project>{f6ac23e5-47b3-410e-9b4c-798c0923e75b}</Project>
+      <Name>OhYeah.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

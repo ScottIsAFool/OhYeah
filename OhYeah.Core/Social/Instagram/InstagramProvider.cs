@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Cimbalino.Toolkit.Services;
 using OhYeah.Core.Extensions;
 using OhYeah.Core.Helpers;
 using OhYeah.Core.Interfaces;
@@ -15,6 +16,8 @@ namespace OhYeah.Core.Social.Instagram
     {
         public override string Name => "Instagram";
         public override string AppId => Constants.Api.Instagram.AppId;
+
+        public InstagramProvider(IApplicationSettingsService applicationSettingsService) : base(applicationSettingsService) { }
 
         public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
         {

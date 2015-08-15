@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
-using ScottIsAFool.Windows.Core.Logging;
 
-namespace OhYeah.ViewModel
+namespace OhYeah.ViewModels
 {
     public abstract class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase
     {
-        public ILog Log { get; set; }
+        //public ILog Log { get; set; }
 
         protected ViewModelBase()
         {
             if (!IsInDesignMode)
             {
                 WireMessages();
-                Log = new WinLogger(GetType().FullName);
+                //Log = new WinLogger(GetType().FullName);
             }
         }
 

@@ -6,15 +6,16 @@ namespace OhYeah.Core.Social
 {
     public abstract class BaseSocialProvider
     {
-        protected static readonly IApplicationSettingsServiceHandler Settings = new ApplicationSettingsService().Roaming;
+        protected readonly IApplicationSettingsServiceHandler Settings;
         public virtual string Name { get; } = string.Empty;
         public virtual string AppId { get; } = string.Empty;
         public User User { get; private set; }
         public bool IsSignedIn => User != null || !string.IsNullOrEmpty(AuthenticationDetails?.AccessToken);
         public AuthenticationDetails AuthenticationDetails { get; private set; }
 
-        protected BaseSocialProvider()
+        protected BaseSocialProvider(IApplicationSettingsService applicationSettingsService)
         {
+            Settings = applicationSettingsService.Roaming;
             LoadAuthDetails();
             LoadUser();
         }
