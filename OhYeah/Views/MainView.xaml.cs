@@ -1,7 +1,4 @@
-﻿using Cimbalino.Toolkit.Services;
-using OhYeah.ViewModel;
-
-namespace OhYeah.Views
+﻿namespace OhYeah.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -11,11 +8,6 @@ namespace OhYeah.Views
         public MainView()
         {
             InitializeComponent();
-        }
-
-        public override INavigationService NavigationService
-        {
-            get { return ViewModelLocator.NavigationService; }
         }
     }
 }

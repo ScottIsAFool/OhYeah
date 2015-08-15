@@ -10,5 +10,9 @@
         
         <converters:YearsAgoConverter x:Key="YearsAgoConverter"/>
         <converters:PostTypeVisibilityConverter x:Key="PostTypeVisibilityConverter"/>
+
+        <Color x:Key="BackgroundColour">LightGray</Color>
+        <SolidColorBrush x:Key="BackgroundBrush"
+                         Color="{StaticResource BackgroundColour}" />
     </Application.Resources>
 </controls:BaseApplication>

@@ -1,12 +1,12 @@
-﻿<controls:BasePage x:Class="OhYeah.Views.MainView"
+﻿<controls:BaseView x:Class="OhYeah.Views.MainView"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                   xmlns:controls="using:ScottIsAFool.Windows.Controls"
                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                    xmlns:behaviours="using:OhYeah.Behaviours"
+                   xmlns:controls="using:OhYeah.Controls"
                    mc:Ignorable="d"
                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                    DataContext="{Binding Main, Source={StaticResource Locator}}">
@@ -21,9 +21,6 @@
         <CollectionViewSource x:Key="PostSource"
                               IsSourceGrouped="True"
                               Source="{Binding Posts}" />
-        <Color x:Key="BackgroundColour">LightGray</Color>
-        <SolidColorBrush x:Key="BackgroundBrush"
-                         Color="{StaticResource BackgroundColour}" />
     </Page.Resources>
     
     <Page.BottomAppBar>
@@ -141,4 +138,4 @@
             </ListView.GroupStyle>
         </ListView>
     </Grid>
-</controls:BasePage>
+</controls:BaseView>
