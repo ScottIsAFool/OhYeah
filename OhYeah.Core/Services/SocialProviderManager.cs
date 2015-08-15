@@ -13,14 +13,24 @@ namespace OhYeah.Core.Services
 {
     public class SocialProviderManager : ISocialProviderManager
     {
-        public SocialProviderManager(IApplicationSettingsService applicationSettingsService)
+        public SocialProviderManager(
+            IApplicationSettingsService applicationSettingsService,
+            ILauncherService launcherService)
         {
-            Facebook = new FacebookProvider(applicationSettingsService);
-            Instagram = new InstagramProvider(applicationSettingsService);
+            Providers = new List<ISocialProvider>
+            {
+                new FacebookProvider(applicationSettingsService, launcherService),
+                new InstagramProvider(applicationSettingsService)
+            };
+
+            Facebook = Providers.FirstOrDefault(x => x.Provider == Provider.Facebook);
+            Instagram = Providers.FirstOrDefault(x => x.Provider == Provider.Instagram);
         }
 
         public ISocialProvider Facebook { get; }
         public ISocialProvider Instagram { get; }
+
+        public List<ISocialProvider> Providers { get; }
 
         public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
         {

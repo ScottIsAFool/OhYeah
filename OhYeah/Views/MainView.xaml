@@ -83,6 +83,12 @@
                                            Margin="0,6,0,0" />
                                 </StackPanel>
                                 
+                                <Image Grid.Row="1"
+                                       HorizontalAlignment="Left"
+                                       Source="{Binding ProviderLogo}"
+                                       Height="40"
+                                       Stretch="UniformToFill"
+                                       Width="40"/>
                                 <StackPanel Orientation="Horizontal"
                                             Grid.Row="1"
                                             HorizontalAlignment="Right">

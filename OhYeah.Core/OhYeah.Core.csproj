@@ -63,9 +63,11 @@
     <Compile Include="Extensions\HttpExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\PostExtensions.cs" />
+    <Compile Include="Extensions\ProviderExtensions.cs" />
     <Compile Include="Extensions\SerialisationExtensions.cs" />
     <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="Helpers\HttpClientHelper.cs" />
+    <Compile Include="Interfaces\INavigation.cs" />
     <Compile Include="Interfaces\ISocialProvider.cs" />
     <Compile Include="Interfaces\ISocialProviderManager.cs" />
     <Compile Include="Model\DateGroup.cs" />

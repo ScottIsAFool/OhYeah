@@ -8,7 +8,7 @@
     <ProjectGuid>{F6AC23E5-47B3-410E-9B4C-798C0923E75B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OhYeah.ViewModels</RootNamespace>
+    <RootNamespace>OhYeah</RootNamespace>
     <AssemblyName>OhYeah.ViewModels</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="Extensions\PostViewModelExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\PostViewModel.cs" />
-    <Compile Include="FacebookViewModel.cs" />
-    <Compile Include="MainViewModel.cs" />
-    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="ViewModels\AccountsViewModel.cs" />
+    <Compile Include="ViewModels\Entities\PostViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Cimbalino.Toolkit.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

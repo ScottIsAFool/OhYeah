@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using OhYeah.Core.Extensions;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
 
@@ -15,6 +16,8 @@ namespace OhYeah.ViewModels.Entities
         }
 
         public OhYeahPost Post { get; set; }
+
+        public string ProviderLogo => Post?.Provider.GetLogo();
 
         public RelayCommand ShareCommand
         {

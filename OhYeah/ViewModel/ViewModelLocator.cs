@@ -25,24 +25,26 @@ namespace OhYeah.ViewModel
 
             if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
             {
+                SimpleIoc.Default.RegisterIf<ILauncherService, EmptyLauncherService>();
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, EmptyApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<INavigation, EmptyNavigationService>();
                 SimpleIoc.Default.RegisterIf<ISocialProviderManager, EmptySocialProviderManager>();
             }
             else
             {
+                SimpleIoc.Default.RegisterIf<ILauncherService, LauncherService>();
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<INavigation, Navigation>();
                 SimpleIoc.Default.RegisterIf<ISocialProviderManager, SocialProviderManager>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<FacebookViewModel>();
+            SimpleIoc.Default.Register<AccountsViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
-        public FacebookViewModel Facebook => ServiceLocator.Current.GetInstance<FacebookViewModel>();
+        public AccountsViewModel Accounts => ServiceLocator.Current.GetInstance<AccountsViewModel>();
 
         public static INavigation NavigationService => ServiceLocator.Current.GetInstance<INavigation>();
 

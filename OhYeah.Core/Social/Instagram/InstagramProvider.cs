@@ -16,6 +16,7 @@ namespace OhYeah.Core.Social.Instagram
     {
         public override string Name => "Instagram";
         public override string AppId => Constants.Api.Instagram.AppId;
+        public Provider Provider { get; } = Provider.Instagram;
 
         public InstagramProvider(IApplicationSettingsService applicationSettingsService) : base(applicationSettingsService) { }
 
@@ -30,6 +31,11 @@ namespace OhYeah.Core.Social.Instagram
         public Task<Social.User> GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
             return Task.FromResult<Social.User>(null);
+        }
+
+        public Task Authenticate()
+        {
+            return Task.FromResult(0);
         }
 
         private async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)

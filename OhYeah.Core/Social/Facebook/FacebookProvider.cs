@@ -16,12 +16,21 @@ namespace OhYeah.Core.Social.Facebook
 {
     public class FacebookProvider : BaseSocialProvider, ISocialProvider
     {
+        private readonly ILauncherService _launcherService;
+        private const string FbConnectUri = "fbconnect://authorize?client_id={0}&scope={1}&redirect_uri=msft-{2}://authorize";
         private const string DateFormat = "yyyy-MM-dd";
         private FacebookClient _facebookClient;
         public override string Name => "Facebook";
         public override string AppId => Constants.Api.Facebook.AppId;
+        public Provider Provider { get; } = Provider.Facebook;
 
-        public FacebookProvider(IApplicationSettingsService applicationSettingsService) : base(applicationSettingsService) { }
+        public FacebookProvider(
+            IApplicationSettingsService applicationSettingsService,
+            ILauncherService launcherService) 
+            : base(applicationSettingsService)
+        {
+            _launcherService = launcherService;
+        }
 
         protected override Task PostAuthenticationLoaded()
         {
@@ -69,6 +78,18 @@ namespace OhYeah.Core.Social.Facebook
             dynamic result = await _facebookClient.GetTaskAsync("me");
             var fbUser = new GraphUser(result);
             return fbUser.ToUser();
+        }
+
+        public Task Authenticate()
+        {
+            var uri = GetConnectUri();
+
+            return _launcherService.LaunchUriAsync(uri);
+        }
+
+        private string GetConnectUri()
+        {
+            return string.Format(FbConnectUri, Constants.Api.Facebook.AppId, "basic_info,publish_actions,user_posts", "a97700ab0b194661a12aa9a17bd385c1");
         }
     }
 }
