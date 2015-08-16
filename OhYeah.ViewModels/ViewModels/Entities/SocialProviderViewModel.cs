@@ -9,6 +9,14 @@ namespace OhYeah.ViewModels.Entities
         public SocialProviderViewModel(ISocialProvider socialProvider)
         {
             SocialProvider = socialProvider;
+
+            SocialProvider.UserChanged += (sender, args) =>
+            {
+                if (args.Provider == SocialProvider.Provider)
+                {
+                    RaisePropertyChanged(() => DisplayName);
+                }
+            };
         }
 
         public ISocialProvider SocialProvider { get; }

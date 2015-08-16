@@ -7,6 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using OhYeah.Core.Social;
+using OhYeah.ViewModel;
 using OhYeah.Views;
 using ScottIsAFool.Windows.Core.Extensions;
 
@@ -82,8 +84,6 @@ namespace OhYeah
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += RootFrame_FirstNavigated;
 
-                await Task.Delay(50);
-
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
@@ -97,7 +97,7 @@ namespace OhYeah
             Window.Current.Activate();
         }
 
-        protected override void OnActivated(IActivatedEventArgs args)
+        protected override async void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
 
@@ -109,8 +109,13 @@ namespace OhYeah
                     var uri = eventArgs.Uri;
                     var query = uri.QueryDictionary();
 
-                    var accessToken = query["access_token"];
-
+                    if (query.ContainsKey("state") && query["state"] == "facebook")
+                    {
+                        var accessToken = query["access_token"];
+                        var manager = ViewModelLocator.SocialProviderManager;
+                        await manager.Facebook.SetAuthenticationDetails(new AuthenticationDetails {AccessToken = accessToken});
+                        await manager.Facebook.GetUser();
+                    }
                 }
             }
         }

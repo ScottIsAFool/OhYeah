@@ -1,54 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using OhYeah.Core.Interfaces;
+﻿using Cimbalino.Toolkit.Services;
 using OhYeah.Core.Model;
 using OhYeah.Core.Social;
 
 namespace OhYeah.Core.Empty
 {
-    public class EmptySocialProvider : ISocialProvider
+    public class EmptySocialProvider : BaseSocialProvider
     {
-        public string Name { get; } = "Design time";
-        public string AppId { get; }
-        public Provider Provider { get; } = Provider.Facebook;
-        public Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
-        {
-            throw new NotImplementedException();
-        }
+        public override string Name { get; } = "Design time";
+        public override Provider Provider { get; } = Provider.Facebook;
 
-        public Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
-        {
-            throw new NotImplementedException();
-        }
+        public override User User { get; protected set; } = new User {Name = "Scott Lovegrove"};
 
-        public Task Authenticate()
+        public EmptySocialProvider(IApplicationSettingsService applicationSettingsService) : base(applicationSettingsService)
         {
-            throw new NotImplementedException();
         }
-
-        public Task SignOut()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveAuthDetails()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void LoadAuthDetails()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ClearAuthDetails()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsSignedIn { get; }
-        public User User { get; } = new User {Name = "Scott Lovegrove"};
     }
 }

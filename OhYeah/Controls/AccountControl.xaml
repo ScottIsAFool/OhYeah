@@ -21,7 +21,7 @@
                    Margin="0,6,6,6"/>
             <TextBlock Text="{Binding SocialProvider.Name}"
                        Style="{StaticResource BodyTextBlockStyle}"
-                       FontSize="13.333" 
+                       FontSize="16"
                        VerticalAlignment="Center"/>
         </StackPanel>
         

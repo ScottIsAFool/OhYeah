@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\INavigation.cs" />
     <Compile Include="Interfaces\ISocialProvider.cs" />
     <Compile Include="Interfaces\ISocialProviderManager.cs" />
+    <Compile Include="UserChangedEventArgs.cs" />
     <Compile Include="Model\DateGroup.cs" />
     <Compile Include="Model\OhYeahPost.cs" />
     <Compile Include="Model\Provider.cs" />

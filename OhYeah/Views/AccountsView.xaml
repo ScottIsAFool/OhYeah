@@ -13,7 +13,7 @@
         <ListView ItemsSource="{Binding Providers}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <controls:AccountControl Height="50"
+                    <controls:AccountControl Height="60"
                                              Margin="19,0,19,12"/>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -18,7 +18,7 @@ namespace OhYeah.ViewModels
             {
                 Providers = new List<SocialProviderViewModel>
                 {
-                    new SocialProviderViewModel(new EmptySocialProvider())
+                    new SocialProviderViewModel(new EmptySocialProvider(new EmptyApplicationSettingsService()))
                 };
             }
             else

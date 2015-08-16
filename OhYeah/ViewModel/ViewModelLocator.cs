@@ -63,6 +63,8 @@ namespace OhYeah.ViewModel
 
         public static INavigation NavigationService => ServiceLocator.Current.GetInstance<INavigation>();
 
+        public static ISocialProviderManager SocialProviderManager => ServiceLocator.Current.GetInstance<ISocialProviderManager>();
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

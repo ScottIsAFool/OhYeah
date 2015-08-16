@@ -16,9 +16,12 @@ namespace OhYeah.Core.Social.Facebook
     public class FacebookProvider : BaseSocialProvider
     {
         private readonly ILauncherService _launcherService;
-        private const string FbConnectUri = "fbconnect://authorize?client_id={0}&scope={1}&redirect_uri=msft-{2}://authorize";
+
+        private const string FbConnectUri = "fbconnect://authorize?client_id={0}&scope={1}&redirect_uri=msft-{2}://authorize&state=facebook";
         private const string DateFormat = "yyyy-MM-dd";
+
         private FacebookClient _facebookClient;
+
         public override string Name => "Facebook";
         public override string AppId => Constants.Api.Facebook.AppId;
         public override Provider Provider { get; } = Provider.Facebook;
@@ -76,7 +79,11 @@ namespace OhYeah.Core.Social.Facebook
         {
             dynamic result = await _facebookClient.GetTaskAsync("me");
             var fbUser = new GraphUser(result);
-            return fbUser.ToUser();
+            var user = fbUser.ToUser();
+
+            SetUser(user);
+
+            return user;
         }
 
         public override Task Authenticate()

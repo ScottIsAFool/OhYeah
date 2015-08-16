@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using OhYeah.Core.Model;
@@ -8,11 +9,13 @@ namespace OhYeah.Core.Interfaces
 {
     public interface ISocialProvider
     {
+        event EventHandler<UserChangedEventArgs> UserChanged;
         string Name { get; }
         string AppId { get; }
         Provider Provider { get; }
         Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken));
         Task<User> GetUser(CancellationToken cancellationToken = default(CancellationToken));
+        Task SetAuthenticationDetails(AuthenticationDetails authentication);
         Task Authenticate();
         Task SignOut();
         bool IsSignedIn { get; }
