@@ -1,14 +1,38 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using Newtonsoft.Json;
+using OhYeah.Core.Interfaces;
+using OhYeah.Core.Model;
 
 namespace OhYeah.Core.Social
 {
-    public abstract class BaseSocialProvider
+    public abstract class BaseSocialProvider : ISocialProvider
     {
         protected readonly IApplicationSettingsServiceHandler Settings;
         public virtual string Name { get; } = string.Empty;
         public virtual string AppId { get; } = string.Empty;
+        public virtual Provider Provider { get; }
+
+        public virtual Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
+        {
+            return Task.FromResult(new List<DateGroup<OhYeahPost>>());
+        }
+
+        public virtual Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
+        {
+            return Task.FromResult(new User());
+        }
+
+        public virtual async Task Authenticate()
+        {
+            if (AuthenticationDetails != null)
+            {
+                await GetUser();
+            }
+        }
+
         public User User { get; private set; }
         public bool IsSignedIn => User != null || !string.IsNullOrEmpty(AuthenticationDetails?.AccessToken);
         public AuthenticationDetails AuthenticationDetails { get; private set; }
@@ -18,6 +42,13 @@ namespace OhYeah.Core.Social
             Settings = applicationSettingsService.Roaming;
             LoadAuthDetails();
             LoadUser();
+        }
+        
+        public virtual Task SignOut()
+        {
+            ClearAuthDetails();
+            ClearUser();
+            return Task.FromResult(0);
         }
 
         #region Save/Load/Clear user
@@ -74,7 +105,7 @@ namespace OhYeah.Core.Social
             return Task.FromResult(0);
         }
 
-#region Common save/load/clear methods
+        #region Common save/load/clear methods
         private void Clear(string key)
         {
             if (Settings.Contains(key))

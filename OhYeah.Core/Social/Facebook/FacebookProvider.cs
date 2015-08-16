@@ -8,13 +8,12 @@ using Facebook;
 using Facebook.Client;
 using Newtonsoft.Json;
 using OhYeah.Core.Extensions;
-using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
 using ScottIsAFool.Windows.Core.Extensions;
 
 namespace OhYeah.Core.Social.Facebook
 {
-    public class FacebookProvider : BaseSocialProvider, ISocialProvider
+    public class FacebookProvider : BaseSocialProvider
     {
         private readonly ILauncherService _launcherService;
         private const string FbConnectUri = "fbconnect://authorize?client_id={0}&scope={1}&redirect_uri=msft-{2}://authorize";
@@ -22,7 +21,7 @@ namespace OhYeah.Core.Social.Facebook
         private FacebookClient _facebookClient;
         public override string Name => "Facebook";
         public override string AppId => Constants.Api.Facebook.AppId;
-        public Provider Provider { get; } = Provider.Facebook;
+        public override Provider Provider { get; } = Provider.Facebook;
 
         public FacebookProvider(
             IApplicationSettingsService applicationSettingsService,
@@ -38,7 +37,7 @@ namespace OhYeah.Core.Social.Facebook
             return base.PostAuthenticationLoaded();
         }
 
-        public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken))
+        public override async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken))
         {
             if (!IsSignedIn)
             {
@@ -73,14 +72,14 @@ namespace OhYeah.Core.Social.Facebook
             return groupList;
         }
 
-        public async Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<User> GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
             dynamic result = await _facebookClient.GetTaskAsync("me");
             var fbUser = new GraphUser(result);
             return fbUser.ToUser();
         }
 
-        public Task Authenticate()
+        public override Task Authenticate()
         {
             var uri = GetConnectUri();
 

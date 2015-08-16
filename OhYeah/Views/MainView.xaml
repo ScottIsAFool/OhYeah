@@ -124,7 +124,7 @@
                 <GroupStyle HidesIfEmpty="True">
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
-                            <Border Background="SkyBlue"
+                            <Border Background="{StaticResource AccentBrush}"
                                     Margin="0,0,0,6"
                                     CornerRadius="0,0,5,0"
                                     Padding="6">

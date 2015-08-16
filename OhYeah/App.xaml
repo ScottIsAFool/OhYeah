@@ -3,6 +3,7 @@
                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                           xmlns:controls="using:ScottIsAFool.Windows.Controls"
                           xmlns:converters="using:OhYeah.Converters"
+                          xmlns:cimbalino="using:Cimbalino.Toolkit.Converters"
                           RequestedTheme="Light">
     <Application.Resources>
         <vm:ViewModelLocator x:Key="Locator"
@@ -10,9 +11,17 @@
         
         <converters:YearsAgoConverter x:Key="YearsAgoConverter"/>
         <converters:PostTypeVisibilityConverter x:Key="PostTypeVisibilityConverter"/>
+        
+        <cimbalino:BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+        <cimbalino:BooleanToVisibilityConverter x:Key="InverseVisibilityConverter"
+                                                InvertValue="True"/>
 
         <Color x:Key="BackgroundColour">LightGray</Color>
         <SolidColorBrush x:Key="BackgroundBrush"
                          Color="{StaticResource BackgroundColour}" />
+        
+        <Color x:Key="AccentColor">SkyBlue</Color>
+        <SolidColorBrush x:Key="AccentBrush"
+                         Color="{StaticResource AccentColor}"/>
     </Application.Resources>
 </controls:BaseApplication>

@@ -6,21 +6,20 @@ using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 using OhYeah.Core.Extensions;
 using OhYeah.Core.Helpers;
-using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
 using ScottIsAFool.Windows.Core.Extensions;
 
 namespace OhYeah.Core.Social.Instagram
 {
-    public class InstagramProvider : BaseSocialProvider, ISocialProvider
+    public class InstagramProvider : BaseSocialProvider
     {
         public override string Name => "Instagram";
         public override string AppId => Constants.Api.Instagram.AppId;
-        public Provider Provider { get; } = Provider.Instagram;
+        public override Provider Provider { get; } = Provider.Instagram;
 
         public InstagramProvider(IApplicationSettingsService applicationSettingsService) : base(applicationSettingsService) { }
 
-        public async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
+        public override async Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = new CancellationToken())
         {
             var today = DateTime.Now.Date;
             var tasks = today.GetPreviousYears().Select(x => GetPosts(cancellationToken, x));
@@ -28,14 +27,9 @@ namespace OhYeah.Core.Social.Instagram
             return groups != null ? groups.ToList() : new List<DateGroup<OhYeahPost>>();
         }
 
-        public Task<Social.User> GetUser(CancellationToken cancellationToken = new CancellationToken())
+        public override Task<Social.User> GetUser(CancellationToken cancellationToken = new CancellationToken())
         {
             return Task.FromResult<Social.User>(null);
-        }
-
-        public Task Authenticate()
-        {
-            return Task.FromResult(0);
         }
 
         private async Task<DateGroup<OhYeahPost>> GetPosts(CancellationToken cancellationToken, DateTime today)

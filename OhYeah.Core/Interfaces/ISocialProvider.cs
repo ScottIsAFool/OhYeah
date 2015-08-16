@@ -14,9 +14,7 @@ namespace OhYeah.Core.Interfaces
         Task<List<DateGroup<OhYeahPost>>> GetPosts(CancellationToken cancellationToken = default(CancellationToken));
         Task<User> GetUser(CancellationToken cancellationToken = default(CancellationToken));
         Task Authenticate();
-        void SaveAuthDetails();
-        void LoadAuthDetails();
-        void ClearAuthDetails();
+        Task SignOut();
         bool IsSignedIn { get; }
         User User { get; }
     }

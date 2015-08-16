@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using OhYeah.Core.Interfaces;
@@ -30,6 +28,11 @@ namespace OhYeah.Core.Empty
             throw new NotImplementedException();
         }
 
+        public Task SignOut()
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveAuthDetails()
         {
             throw new NotImplementedException();
@@ -46,6 +49,6 @@ namespace OhYeah.Core.Empty
         }
 
         public bool IsSignedIn { get; }
-        public User User { get; }
+        public User User { get; } = new User {Name = "Scott Lovegrove"};
     }
 }
