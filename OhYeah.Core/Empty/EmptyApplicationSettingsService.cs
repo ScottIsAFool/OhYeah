@@ -1,6 +1,6 @@
 ﻿using Cimbalino.Toolkit.Services;
 
-namespace OhYeah.Empty
+namespace OhYeah.Core.Empty
 {
     public class EmptyApplicationSettingsService : IApplicationSettingsService
     {

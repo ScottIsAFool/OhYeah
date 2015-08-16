@@ -91,10 +91,6 @@
     <Compile Include="Controls\BaseView.cs" />
     <Compile Include="Converters\PostTypeVisibilityConverter.cs" />
     <Compile Include="Converters\YearsAgoConverter.cs" />
-    <Compile Include="Empty\EmptyApplicationSettingsService.cs" />
-    <Compile Include="Empty\EmptyLauncherService.cs" />
-    <Compile Include="Empty\EmptyNavigationService.cs" />
-    <Compile Include="Empty\EmptySocialProviderManager.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Services\Navigation.cs" />
     <Compile Include="Views\AboutView.xaml.cs">

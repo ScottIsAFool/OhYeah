@@ -14,6 +14,8 @@ namespace OhYeah.ViewModels.Entities
 
         public bool IsSignedIn => SocialProvider.IsSignedIn;
 
+        public string DisplayName => string.IsNullOrEmpty(SocialProvider.User?.Name) ? "" : SocialProvider.User.Name;
+
         public RelayCommand AuthenticateCommand
         {
             get

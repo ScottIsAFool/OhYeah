@@ -1,9 +1,9 @@
 using Cimbalino.Toolkit.Services;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using OhYeah.Core.Empty;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Services;
-using OhYeah.Empty;
 using OhYeah.Extensions;
 using OhYeah.Services;
 using OhYeah.ViewModels;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cimbalino.Toolkit.Services;
 using OhYeah.Core.Interfaces;
 
-namespace OhYeah.Empty
+namespace OhYeah.Core.Empty
 {
     public class EmptyNavigationService : INavigation
     {

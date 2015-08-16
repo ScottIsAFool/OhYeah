@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Cimbalino.Toolkit.Services;
 
-namespace OhYeah.Empty
+namespace OhYeah.Core.Empty
 {
     public class EmptyLauncherService : ILauncherService
     {

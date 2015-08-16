@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
 
-namespace OhYeah.Empty
+namespace OhYeah.Core.Empty
 {
     public class EmptySocialProviderManager : ISocialProviderManager
     {
