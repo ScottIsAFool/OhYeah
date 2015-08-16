@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -36,7 +37,7 @@ namespace OhYeah
         /// search results, and so forth.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (Debugger.IsAttached)
@@ -80,6 +81,8 @@ namespace OhYeah
 
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += RootFrame_FirstNavigated;
+
+                await Task.Delay(50);
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation

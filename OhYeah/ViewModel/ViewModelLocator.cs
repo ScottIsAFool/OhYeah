@@ -16,11 +16,26 @@ namespace OhYeah.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
+        static ViewModelLocator()
+        {
+            LoadEverything();
+        }
+
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
         public ViewModelLocator()
         {
+            LoadEverything();
+        }
+
+        private static void LoadEverything()
+        {
+            if (ServiceLocator.IsLocationProviderSet)
+            {
+                return;
+            }
+
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)

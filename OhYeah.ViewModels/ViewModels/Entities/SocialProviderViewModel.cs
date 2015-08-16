@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using OhYeah.Core.Extensions;
 using OhYeah.Core.Interfaces;
 
 namespace OhYeah.ViewModels.Entities
@@ -14,7 +15,9 @@ namespace OhYeah.ViewModels.Entities
 
         public bool IsSignedIn => SocialProvider.IsSignedIn;
 
-        public string DisplayName => string.IsNullOrEmpty(SocialProvider.User?.Name) ? "" : SocialProvider.User.Name;
+        public string DisplayName => string.IsNullOrEmpty(SocialProvider.User?.Name) ? SocialProvider.User?.Username : SocialProvider.User.Name;
+
+        public string ProviderLogo => SocialProvider?.Provider.GetLogo();
 
         public RelayCommand AuthenticateCommand
         {
@@ -23,6 +26,18 @@ namespace OhYeah.ViewModels.Entities
                 return new RelayCommand(async () =>
                 {
                     await SocialProvider.Authenticate();
+                });
+            }
+        }
+
+        public RelayCommand SignOutCommand
+        {
+            get
+            {
+                return new RelayCommand(async () =>
+                {
+                    await SocialProvider.SignOut();
+                    RaisePropertyChanged(() => IsSignedIn);
                 });
             }
         }

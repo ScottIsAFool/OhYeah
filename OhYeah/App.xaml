@@ -23,5 +23,10 @@
         <Color x:Key="AccentColor">SkyBlue</Color>
         <SolidColorBrush x:Key="AccentBrush"
                          Color="{StaticResource AccentColor}"/>
+
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+        </Style>
     </Application.Resources>
 </controls:BaseApplication>

@@ -5,9 +5,11 @@ using Cimbalino.Toolkit.Services;
 using Newtonsoft.Json;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
+using PropertyChanged;
 
 namespace OhYeah.Core.Social
 {
+    [ImplementPropertyChanged]
     public abstract class BaseSocialProvider : ISocialProvider
     {
         protected readonly IApplicationSettingsServiceHandler Settings;
@@ -96,6 +98,7 @@ namespace OhYeah.Core.Social
 
         public void ClearAuthDetails()
         {
+            AuthenticationDetails = null;
             Clear(AuthKey);
         }
 #endregion
