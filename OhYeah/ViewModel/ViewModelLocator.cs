@@ -44,6 +44,7 @@ namespace OhYeah.ViewModel
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, EmptyApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<INavigation, EmptyNavigationService>();
                 SimpleIoc.Default.RegisterIf<ISocialProviderManager, EmptySocialProviderManager>();
+                SimpleIoc.Default.RegisterIf<IWebAuthService, EmptyWebAuthService>();
             }
             else
             {
@@ -51,6 +52,7 @@ namespace OhYeah.ViewModel
                 SimpleIoc.Default.RegisterIf<IApplicationSettingsService, ApplicationSettingsService>();
                 SimpleIoc.Default.RegisterIf<INavigation, Navigation>();
                 SimpleIoc.Default.RegisterIf<ISocialProviderManager, SocialProviderManager>();
+                SimpleIoc.Default.RegisterIf<IWebAuthService, WebAuthService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();

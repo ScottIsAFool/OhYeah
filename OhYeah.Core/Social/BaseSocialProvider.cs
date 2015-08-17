@@ -47,7 +47,12 @@ namespace OhYeah.Core.Social
                 await GetUser();
             }
         }
-        
+
+        public virtual Task CompleteAuthentication(string code)
+        {
+            return Task.FromResult(0);
+        }
+
         public virtual Task SignOut()
         {
             ClearAuthDetails();

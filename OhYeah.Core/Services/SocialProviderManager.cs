@@ -15,12 +15,13 @@ namespace OhYeah.Core.Services
     {
         public SocialProviderManager(
             IApplicationSettingsService applicationSettingsService,
-            ILauncherService launcherService)
+            ILauncherService launcherService,
+            IWebAuthService webAuthService)
         {
             Providers = new List<ISocialProvider>
             {
                 new FacebookProvider(applicationSettingsService, launcherService),
-                new InstagramProvider(applicationSettingsService)
+                new InstagramProvider(applicationSettingsService, webAuthService)
             };
 
             Facebook = Providers.FirstOrDefault(x => x.Provider == Provider.Facebook);

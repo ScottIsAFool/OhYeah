@@ -8,15 +8,16 @@
                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                    DataContext="{Binding Accounts, Source={StaticResource Locator}}">
 
-    <Grid Background="{StaticResource BackgroundBrush}"
-          Margin="0,32,0,0">
-        <ListView ItemsSource="{Binding Providers}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <controls:AccountControl Height="60"
-                                             Margin="19,0,19,12"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid Margin="0,32,0,0">
+            <ListView ItemsSource="{Binding Providers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:AccountControl Height="60"
+                                                 Margin="19,0,19,12" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
 </controls:BaseView>

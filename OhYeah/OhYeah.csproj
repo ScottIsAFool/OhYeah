@@ -93,6 +93,7 @@
     <Compile Include="Converters\YearsAgoConverter.cs" />
     <Compile Include="Extensions\ContainerExtensions.cs" />
     <Compile Include="Services\Navigation.cs" />
+    <Compile Include="Services\WebAuthService.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>

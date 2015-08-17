@@ -15,6 +15,7 @@ namespace OhYeah.ViewModels.Entities
                 if (args.Provider == SocialProvider.Provider)
                 {
                     RaisePropertyChanged(() => DisplayName);
+                    RaisePropertyChanged(() => IsSignedIn);
                 }
             };
         }

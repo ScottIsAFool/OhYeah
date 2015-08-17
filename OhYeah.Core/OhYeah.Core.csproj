@@ -64,6 +64,8 @@
     <Compile Include="Empty\EmptyNavigationService.cs" />
     <Compile Include="Empty\EmptySocialProvider.cs" />
     <Compile Include="Empty\EmptySocialProviderManager.cs" />
+    <Compile Include="Empty\EmptyWebAuthenticationService.cs" />
+    <Compile Include="Empty\EmptyWebAuthService.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\HttpExtensions.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
@@ -75,6 +77,8 @@
     <Compile Include="Interfaces\INavigation.cs" />
     <Compile Include="Interfaces\ISocialProvider.cs" />
     <Compile Include="Interfaces\ISocialProviderManager.cs" />
+    <Compile Include="Interfaces\IWebAuthService.cs" />
+    <Compile Include="Social\Instagram\InstagramTokenResponse.cs" />
     <Compile Include="UserChangedEventArgs.cs" />
     <Compile Include="Model\DateGroup.cs" />
     <Compile Include="Model\OhYeahPost.cs" />

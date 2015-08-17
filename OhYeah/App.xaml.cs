@@ -3,10 +3,14 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Security.Authentication.Web;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Ioc;
+using OhYeah.Core;
+using OhYeah.Core.Interfaces;
 using OhYeah.Core.Social;
 using OhYeah.ViewModel;
 using OhYeah.Views;
@@ -115,6 +119,25 @@ namespace OhYeah
                         var manager = ViewModelLocator.SocialProviderManager;
                         await manager.Facebook.SetAuthenticationDetails(new AuthenticationDetails {AccessToken = accessToken});
                         await manager.Facebook.GetUser();
+                    }
+                }
+            }
+            else if (args.Kind == ActivationKind.WebAuthenticationBrokerContinuation)
+            {
+                var continuationArgs = args as IContinuationActivatedEventArgs;
+                var brokerArgs = continuationArgs as IWebAuthenticationBrokerContinuationEventArgs;
+                if (brokerArgs?.WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
+                {
+                    var url = brokerArgs.WebAuthenticationResult.ResponseData;
+                    if (url.Contains("instagram"))
+                    {
+                        var uri = new Uri(url);
+                        var query = uri.QueryDictionary();
+
+                        var code = query["code"];
+
+                        var instagramProvider = SimpleIoc.Default.GetInstance<ISocialProviderManager>().Instagram;
+                        await instagramProvider.CompleteAuthentication(code);
                     }
                 }
             }

@@ -17,6 +17,7 @@ namespace OhYeah.Core.Interfaces
         Task<User> GetUser(CancellationToken cancellationToken = default(CancellationToken));
         Task SetAuthenticationDetails(AuthenticationDetails authentication);
         Task Authenticate();
+        Task CompleteAuthentication(string code);
         Task SignOut();
         bool IsSignedIn { get; }
         User User { get; }
