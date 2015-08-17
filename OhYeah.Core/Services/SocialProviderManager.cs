@@ -61,6 +61,8 @@ namespace OhYeah.Core.Services
                 }
             }
 
+            list.Sort(DateGroup<OhYeahPost>.SortByDate());
+
             return list;
         }
     }
