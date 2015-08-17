@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
+using OhYeah.Core.Social;
 using OhYeah.Core.Social.Facebook;
 
 namespace OhYeah.Converters

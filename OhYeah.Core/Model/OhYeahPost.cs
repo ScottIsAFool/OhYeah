@@ -1,5 +1,5 @@
 ﻿using System;
-using OhYeah.Core.Social.Facebook;
+using OhYeah.Core.Social;
 
 namespace OhYeah.Core.Model
 {

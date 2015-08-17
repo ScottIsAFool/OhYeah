@@ -43,7 +43,7 @@ namespace OhYeah.Core.Social.Instagram
         public override async Task CompleteAuthentication(string code)
         {
             var args = GetAuthParams(code);
-            using (var client = new HttpClient())
+            using (var client = HttpClientHelper.Client())
             {
                 var response = await client.PostAsync(new Uri(TokenUrl), new HttpFormUrlEncodedContent(args));
 
@@ -65,7 +65,7 @@ namespace OhYeah.Core.Social.Instagram
             var today = DateTime.Now.Date;
             var tasks = today.GetPreviousYears().Select(x => GetPosts(cancellationToken, x));
             var groups = await Task.WhenAll(tasks);
-            return groups != null ? groups.ToList() : new List<DateGroup<OhYeahPost>>();
+            return groups != null ? groups.Where(x => x.Date != DateTime.MinValue).ToList() : new List<DateGroup<OhYeahPost>>();
         }
 
         public override Task<Social.User> GetUser(CancellationToken cancellationToken = new CancellationToken())
@@ -83,8 +83,8 @@ namespace OhYeah.Core.Social.Instagram
             var tomorrow = today.AddDays(1);
             using (var client = HttpClientHelper.Client())
             {
-                var url = string.Format(Constants.Api.Instagram.ApiCall, "ACCESSTOKEN", today.ToEpoch(), tomorrow.ToEpoch());
-                var response = await client.GetAsync(url, cancellationToken);
+                var url = string.Format(Constants.Api.Instagram.ApiCall.ToLower(), AuthenticationDetails.AccessToken, today.ToEpoch(), tomorrow.ToEpoch());
+                var response = await client.GetAsync(new Uri(url)).AsTask(cancellationToken);
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -93,7 +93,7 @@ namespace OhYeah.Core.Social.Instagram
 
                 var postResponse = await response.DeserialiseResponse<PostResponse>();
 
-                if (postResponse != null && postResponse.Data.IsNullOrEmpty())
+                if (postResponse != null && !postResponse.Data.IsNullOrEmpty())
                 {
                     return postResponse.Data.Select(x => x.ToPost()).GroupByDate(today);
                 }

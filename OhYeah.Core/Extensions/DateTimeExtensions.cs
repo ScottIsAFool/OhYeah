@@ -5,6 +5,8 @@ namespace OhYeah.Core.Extensions
 {
     public static class DateTimeExtensions
     {
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         public static List<DateTime> GetPreviousYears(this DateTime today)
         {
             today = today.AddYears(-1);
@@ -19,15 +21,12 @@ namespace OhYeah.Core.Extensions
             return yearLists;
         }
 
-        public static double ToEpoch(this DateTime dateTime)
+        public static long ToEpoch(this DateTime dateTime)
         {
-            var date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var unixTimestamp = System.Convert.ToInt64((dateTime.Date.AddDays(1) - date).TotalSeconds);
-
-            return unixTimestamp;
+            return (long)(dateTime.ToUniversalTime() - UnixEpoch).TotalSeconds;
         }
 
-        public static DateTime FromEpoch(this float epochTime)
+        public static DateTime FromEpoch(this long epochTime)
         {
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             return epoch.AddSeconds(epochTime).ToLocalTime();

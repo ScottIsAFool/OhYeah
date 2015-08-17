@@ -1,4 +1,4 @@
-namespace OhYeah.Core.Social.Facebook
+namespace OhYeah.Core.Social
 {
     public enum PostType
     {

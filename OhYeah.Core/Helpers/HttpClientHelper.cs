@@ -1,5 +1,6 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿
+using Windows.Web.Http;
+using Windows.Web.Http.Filters;
 
 namespace OhYeah.Core.Helpers
 {
@@ -7,7 +8,7 @@ namespace OhYeah.Core.Helpers
     {
         public static HttpClient Client()
         {
-            return new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip });
+            return new HttpClient(new HttpBaseProtocolFilter { AutomaticDecompression = true });
         }
     }
 }

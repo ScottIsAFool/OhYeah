@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
 using OhYeah.Core.Interfaces;
 using OhYeah.Core.Model;
+using OhYeah.Core.Social;
 using OhYeah.Core.Social.Facebook;
 using OhYeah.ViewModels.Entities;
 using OhYeah.ViewModels.Extensions;

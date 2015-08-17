@@ -1,5 +1,6 @@
-﻿using System.Net.Http;
+﻿using System;
 using System.Threading.Tasks;
+using Windows.Web.Http;
 
 namespace OhYeah.Core.Extensions
 {

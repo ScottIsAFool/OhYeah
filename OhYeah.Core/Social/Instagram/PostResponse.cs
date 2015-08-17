@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace OhYeah.Core.Social.Instagram
 {
@@ -125,7 +126,7 @@ namespace OhYeah.Core.Social.Instagram
         public User User { get; set; }
 
         [JsonProperty("created_time")]
-        public string CreatedTime { get; set; }
+        public long CreatedTime { get; set; }
 
         [JsonProperty("images")]
         public Images Images { get; set; }
